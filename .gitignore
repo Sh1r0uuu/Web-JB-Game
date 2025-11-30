@@ -1,0 +1,13 @@
+# Dependencies
+/node_modules
+
+# Builds & Cache
+/dist
+.DS_Store
+*.log
+
+# Local Environment Variables
+.env
+
+# Vite Specific
+.vite
