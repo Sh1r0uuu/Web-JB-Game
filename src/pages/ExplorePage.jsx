@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import accountService from '../services/accountService';
-import { Search, Gamepad2, AlertCircle, Filter, Sparkles, ShoppingBag } from 'lucide-react'; // Heart dihapus
+import { Search, Gamepad2, AlertCircle, Filter, Sparkles, ShoppingBag } from 'lucide-react'; 
 
 export default function ExplorePage() {
-  // ... (State & useEffect sama persis, tidak ada perubahan) ...
   const [accounts, setAccounts] = useState([]);
   const [filteredAccounts, setFilteredAccounts] = useState([]);
   const [search, setSearch] = useState("");
@@ -32,7 +31,6 @@ export default function ExplorePage() {
 
   return (
     <div className="min-h-screen bg-[#0F172A] text-white pb-24 font-sans">
-      {/* Header Sticky */}
       <div className="sticky top-0 z-30 bg-[#0F172A]/95 backdrop-blur-xl border-b border-white/5 px-4 pt-4 pb-4 md:px-6 md:pt-6">
         <div className="flex justify-between items-center mb-4">
           <div><h1 className="text-2xl font-black bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Explore</h1><p className="text-slate-400 text-[10px] md:text-xs mt-0.5">Temukan akun impianmu</p></div>
@@ -43,7 +41,7 @@ export default function ExplorePage() {
             <div className="relative flex items-center bg-[#1E293B] rounded-xl border border-white/10">
                 <div className="pl-3 text-slate-400"><Search size={18} /></div>
                 <input type="text" placeholder="Cari 'Mobile Legends', 'Sultan'..." className="w-full p-3 bg-transparent text-white text-sm focus:outline-none placeholder-slate-500" value={search} onChange={(e) => setSearch(e.target.value)}/>
-                
+                <button className="pr-3 text-slate-400 hover:text-white transition-colors border-l border-white/10 pl-3 ml-1"><Filter size={18} /></button>
             </div>
         </div>
       </div>
@@ -59,7 +57,6 @@ export default function ExplorePage() {
                         <img src={account.image_url || "https://placehold.co/600x400?text=No+Image"} alt={account.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${account.is_sold ? 'grayscale' : ''}`}/>
                         <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent opacity-80"></div>
                         <span className="absolute top-3 left-3 bg-black/40 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/10">{account.games?.name}</span>
-                        {/* TOMBOL FAVORIT DIHAPUS DARI SINI */}
                         {account.is_sold && <div className="absolute inset-0 bg-black/80 flex items-center justify-center backdrop-blur-sm"><span className="text-red-500 font-black text-xl border-4 border-red-500 px-4 py-1 rounded -rotate-12">SOLD</span></div>}
                     </div>
                     

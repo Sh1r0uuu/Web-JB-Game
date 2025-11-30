@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Search, PlusSquare, User, Heart, LogOut } from 'lucide-react'; // Hapus Gamepad2 dari import
+import { Home, Search, PlusSquare, User, Heart, LogOut } from 'lucide-react';
 import userService from '../services/userService';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
@@ -40,11 +40,10 @@ export default function Sidebar() {
         isDanger={true}
       />
       
-      {/* --- LOGO AREA (DISINI PERUBAHANNYA) --- */}
       <div className="flex items-center gap-3 mb-10 cursor-pointer" onClick={() => navigate('/')}>
         <div className="bg-gradient-to-br from-violet-600 to-fuchsia-600 p-2 rounded-lg shadow-lg shadow-violet-500/20">
             <img 
-                src="/app-logo-192.png" // Path Ikon Stiker
+                src="/app-logo-192.png" 
                 alt="GGEZ Store Logo" 
                 className="w-7 h-7 object-contain" 
             />
@@ -54,7 +53,6 @@ export default function Sidebar() {
         </h1>
       </div>
 
-      {/* Menu Items (SAMA) */}
       <nav className="flex-1 space-y-2">
         <SidebarItem icon={<Home size={20} />} label="Beranda" active={isActive('/')} onClick={() => navigate('/')} />
         <SidebarItem icon={<Search size={20} />} label="Explore" active={isActive('/explore')} onClick={() => navigate('/explore')} />
@@ -62,7 +60,6 @@ export default function Sidebar() {
         <SidebarItem icon={<User size={20} />} label="Profil Saya" active={isActive('/profil')} onClick={() => navigate('/profil')} />
       </nav>
 
-      {/* Action Buttons Bawah (SAMA) */}
       <div className="mt-auto space-y-4">
         <button 
             onClick={handleSellClick}
@@ -71,13 +68,13 @@ export default function Sidebar() {
             <PlusSquare size={20} /> Jual Akun
         </button>
 
-        {userService.getUser() && (
+        {user && (
             <button 
                 onClick={() => setShowLogoutModal(true)}
                 className="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-red-400 hover:bg-white/5 rounded-xl transition-all"
             >
                 <LogOut size={20} />
-                <span className="font-medium">Logout ({userService.getUser().username})</span>
+                <span className="font-medium">Logout ({user.username})</span>
             </button>
         )}
       </div>

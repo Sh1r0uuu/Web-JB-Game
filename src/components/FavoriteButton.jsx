@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 export default function FavoriteButton({ account, className = "" }) {
   const [isLiked, setIsLiked] = useState(false);
 
-  // 1. Cek status saat halaman dimuat
   useEffect(() => {
     if (account && account.id) {
        const status = wishlistService.isWishlisted(account.id);
@@ -14,14 +13,12 @@ export default function FavoriteButton({ account, className = "" }) {
     }
   }, [account]);
 
-  // 2. Fungsi saat tombol diklik
   const handleToggle = (e) => {
-    e.stopPropagation(); // Mencegah masuk ke halaman detail saat klik love
+    e.stopPropagation(); 
     
     const isAdded = wishlistService.toggleWishlist(account);
-    setIsLiked(isAdded); // Update warna tombol langsung
+    setIsLiked(isAdded); 
 
-    // Tampilkan notifikasi kecil
     if (isAdded) {
         toast.success("Disimpan ke Wishlist", { 
             icon: '❤️', 

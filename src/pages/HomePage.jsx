@@ -9,7 +9,6 @@ export default function HomePage() {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Data Game Populer (HANYA MENGGUNAKAN LOGO INI)
   const popularGames = [
     { name: "Mobile Legends", img: "https://play-lh.googleusercontent.com/MakersXM5uM985e35wK3z_jZqWc_rF_1i5_45_54_54", hot: true },
     { name: "Valorant", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/1200px-Valorant_logo_-_pink_color_version.svg.png", hot: true },
@@ -23,7 +22,6 @@ export default function HomePage() {
     { name: "Clash Royale", img: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Clash_Royale_logo.svg/1200px-Clash_Royale_logo.svg.png", hot: false },
   ];
   
-  // Tentukan game mana yang ditampilkan (5 pertama atau semua)
   const [showAllGames, setShowAllGames] = useState(false);
   const displayedGames = showAllGames ? popularGames : popularGames.slice(0, 5);
 
@@ -43,7 +41,6 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  // Navigasi Cepat ke Explore dengan Filter
   const handleGameClick = (gameName) => {
     navigate('/explore', { state: { search: gameName } });
   };
@@ -58,16 +55,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#0F172A] text-white pb-24 font-sans selection:bg-violet-500 selection:text-white overflow-x-hidden">
       
-      {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-violet-600/20 rounded-full blur-[128px]"></div>
         <div className="absolute bottom-[20%] right-[-5%] w-80 h-80 bg-cyan-500/10 rounded-full blur-[128px]"></div>
       </div>
 
-      {/* HEADER */}
       <header className="fixed top-0 w-full z-50 bg-[#0F172A]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-          {/* Logo Custom (Mobile/Desktop) */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="bg-gradient-to-br from-violet-600 to-fuchsia-600 p-2 rounded-lg shadow-lg shadow-violet-500/20">
               <img src="/app-logo-192.png" alt="Logo" className="w-7 h-7 object-contain" />
@@ -77,7 +71,6 @@ export default function HomePage() {
             </h1>
           </div>
 
-          {/* Search Bar Desktop */}
           <div className="hidden md:flex flex-1 max-w-md mx-8 relative">
             <input 
               type="text" 
@@ -97,7 +90,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-bold mb-6 animate-fade-in-up">
@@ -122,7 +114,6 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* GAME POPULER GRID */}
           <div className="border-t border-white/5 pt-10">
             <div className="flex items-center justify-center gap-2 mb-8">
                 <Trophy className="text-yellow-500 fill-yellow-500" size={20} />
@@ -158,7 +149,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* TOMBOL SHOW MORE / LESS */}
             {popularGames.length > 5 && (
                 <button 
                   onClick={() => setShowAllGames(!showAllGames)}
@@ -176,7 +166,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
       <section className="py-8 px-6 relative z-10 bg-[#0F172A]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-[#1E293B]/50 backdrop-blur-sm p-6 rounded-2xl border border-white/5 hover:border-violet-500/50 transition-colors group">
@@ -194,7 +183,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TRENDING ITEMS (LIST AKUN) */}
       <main className="max-w-7xl mx-auto px-6 py-12 relative z-10">
         <div className="flex items-end justify-between mb-8">
           <div>
@@ -225,7 +213,6 @@ export default function HomePage() {
                     <div className="w-full h-full rounded-full bg-gradient-to-tr from-violet-500 to-fuchsia-500 flex items-center justify-center text-xs font-bold text-white shadow-lg">{account.sellers?.name ? account.sellers.name.charAt(0) : 'U'}</div>
                   </div>
                   <h3 className="font-bold text-lg text-white mb-2 line-clamp-1 group-hover:text-violet-400 transition-colors">{account.title}</h3>
-                  
                   <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
                     <div>
                       <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Harga</p>
