@@ -1,17 +1,28 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+// 1. Ambil URL dari env atau hardcode
+let rawUrl = import.meta.env.VITE_API_BASE_URL || 'https://backend-jual-akun.vercel.app';
+
+// 2. PEMBERSIHAN TOTAL: Hapus semua garis miring di akhir
+// Contoh: "https://domain.com///" -> "https://domain.com"
+const BASE_URL = rawUrl.replace(/\/+$/, "");
+
+console.log("🔗 API URL Final:", BASE_URL); // Cek di Console Browser nanti
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-// Interceptor agar kita langsung dapat data bersih
+// Interceptor
 apiClient.interceptors.response.use(
   (response) => response.data,
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error("API Error:", error);
+    return Promise.reject(error);
+  }
 );
 
-// PERBAIKAN: Tambahkan BASE_URL di dalam export
 export { apiClient, BASE_URL };
